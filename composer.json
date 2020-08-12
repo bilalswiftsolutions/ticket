@@ -16,5 +16,12 @@
         "psr-4": {
             "Coldxpress\\Ticket\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Coldxpress\\Ticket\\TicketServiceProvider"
+            ]
+        }
     }
 }
