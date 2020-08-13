@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTicketsTable extends Migration
+class CreateTicketsAssignedAgentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateTicketsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tickets', function (Blueprint $table) {
+        Schema::create('ticket_assigned_agents', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('requester_id');
-            $table->longText('subject')->nullable();
-            $table->integer('type_id');
-            $table->integer('priority');
-            $table->integer('status')->default(0);
+            $table->bigInteger('ticket_id');
+            $table->bigInteger('agent_id');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateTicketsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tickets');
+        Schema::dropIfExists('tickets_assigned_agents');
     }
 }

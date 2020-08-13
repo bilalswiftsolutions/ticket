@@ -14,6 +14,7 @@ class CreateTicketRepliesTable extends Migration
     public function up()
     {
         Schema::create('ticket_replies', function (Blueprint $table) {
+            $table->bigInteger('ticket_id');
             $table->bigIncrements('id');
             $table->string('replied_by');
             $table->string('agent_name')->nullable();
