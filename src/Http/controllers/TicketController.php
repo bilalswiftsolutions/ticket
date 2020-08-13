@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 
 class TicketController extends Controller
 {
+
     public function index()
     {
-        return view('ticket::index');
+        return view('ticket::pages.index');
     }
 }
