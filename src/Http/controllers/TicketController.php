@@ -13,7 +13,7 @@ class TicketController extends Controller
 
     public function index()
     {
-        $tickets = Ticket::select('id')->get();
+        $tickets = Ticket::select('id')->where('requester_id',Auth::user()->id)->get();
         return view('ticket::pages.index', compact('tickets'));
     }
 
@@ -31,16 +31,16 @@ class TicketController extends Controller
     public function filteredTickets($filter)
     {
         if ($filter == "unsolved") {
-            $tickets = Ticket::where('status', 0)->orderBy('created_at','desc')->get();
+            $tickets = Ticket::where('status', 0)->where('requester_id',Auth::user()->id)->orderBy('created_at','desc')->get();
         }
         if ($filter == "solved") {
-            $tickets = Ticket::where('status', 1)->orderBy('created_at','desc')->get();
+            $tickets = Ticket::where('status', 1)->where('requester_id',Auth::user()->id)->orderBy('created_at','desc')->get();
         }
         if ($filter == "unassigned") {
-          $tickets =  Ticket::whereDoesntHave('ticket_assigned_agents')->orderBy('created_at','desc')->get();
+          $tickets =  Ticket::where('requester_id',Auth::user()->id)->whereDoesntHave('ticket_assigned_agents')->orderBy('created_at','desc')->get();
         }
         if ($filter == "assigned") {
-            $tickets =  Ticket::has('ticket_assigned_agents')->orderBy('created_at','desc')->get();
+            $tickets =  Ticket::where('requester_id',Auth::user()->id)->has('ticket_assigned_agents')->orderBy('created_at','desc')->get();
         }
         return response()->json($tickets);
     }
