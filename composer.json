@@ -12,7 +12,7 @@
     "minimum-stability": "dev",
     "require": {},
 
-    "autoload-dev": {
+    "autoload": {
         "psr-4": {
             "Coldxpress\\Ticket\\": "src/"
         }
